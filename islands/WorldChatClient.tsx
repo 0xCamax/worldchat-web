@@ -55,6 +55,7 @@ export default function WorldChatClient() {
     const lastHash = await sendMessage(result, lastTx ? lastTx.input : history);
 
     setLastHash(lastHash);
+    setContent("")
   };
 
   return (
