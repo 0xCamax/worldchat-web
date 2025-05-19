@@ -50,7 +50,7 @@ export default function ChatHistory({ data }: ChatHistoryProps) {
               >
                 <div className="flex items-baseline justify-between sm:block">
                   <span className="text-sm font-semibold text-blue-300 mr-2 sm:block sm:mb-1">
-                    {msg.from}
+                    {msg.from.slice(0, 6)}...{msg.from.slice(-4)}
                   </span>
                   <span className="text-xs text-gray-500">
                     {new Date(ethers.toNumber(msg.timestamp)).toLocaleString()}
