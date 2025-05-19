@@ -24,7 +24,7 @@ export const relayer = new ethers.Wallet(
   provider,
 );
 
-if (!ALCHEMY_API_URL) console.log("Undefined Alchemy API URL");
-if (!BLOCKSCOUT_APIKEY) console.log("Undefined Blockscout API Key");
-if (!WORLD_CHAT_ADDRESS) console.log("Undefined World Chat Address");
-if (!Deno.env.get("WC_RELAYER_KEY")) console.log("Undefined WC Relayer Key");
+if (!ALCHEMY_API_URL) throw new Error("Undefined Alchemy API URL");
+if (!BLOCKSCOUT_APIKEY) throw new Error("Undefined Blockscout API Key");
+if (!WORLD_CHAT_ADDRESS) throw new Error("Undefined World Chat Address");
+if (!Deno.env.get("WC_RELAYER_KEY")) throw new Error("Undefined WC Relayer Key");
