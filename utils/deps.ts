@@ -18,5 +18,5 @@ export const WORLD_CHAT_ADDRESS = isMainnet
 export const provider = new ethers.JsonRpcProvider(
   `https://eth-sepolia.blockscout.com/api/eth-rpc?apikey=${BLOCKSCOUT_APIKEY}`,
 );
-export const relayer = new ethers.Wallet(Deno.env.get("WC_RELAYER_KEY")!, provider);
+export const relayer = new ethers.Wallet(Deno.env.get("WC_RELAYER_KEY") ?? ethers.keccak256("vitalik"), provider);
 
