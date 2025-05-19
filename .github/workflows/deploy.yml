@@ -32,11 +32,5 @@ jobs:
           project: "world-chat"
           entrypoint: "main.ts"
           root: "."
-    env:
-      ALCHEMY_API_SEPOLIA: ${{ secrets.ALCHEMY_API_SEPOLIA }}
-      ALCHEMY_API_MAINNET: ${{ secrets.ALCHEMY_API_MAINNET }}
-      BLOCKSCOUT_APIKEY: ${{ secrets.BLOCKSCOUT_APIKEY }}
-      WORLD_CHAT_ADDRESS_SEPOLIA: ${{ secrets.WORLD_CHAT_ADDRESS_SEPOLIA }}
-      WORLD_CHAT_ADDRESS_MAINNET: ${{ secrets.WORLD_CHAT_ADDRESS_MAINNET }}
-      WC_RELAYER_KEY: ${{ secrets.WC_RELAYER_KEY }}
+          
           
