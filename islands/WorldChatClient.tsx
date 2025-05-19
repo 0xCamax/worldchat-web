@@ -15,20 +15,33 @@ export default function WorldChatClient() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (lastHash) {
-      getTransaction(lastHash).then((response) => {
-        setHistory(response.result.input);
-        setLastTx(response.result);
-      });
-    } else {
-      setIsLoading(true);
-      getHistory().then((response) => {
-        const sorted = response.items.filter((item) => item.input.slice(0, 10) == "0x7c98ed42").sort((a, b) => b.input.length - a.input.length);
-        const mostRecent = sorted[0];
-        setHistory(mostRecent.input);
-        setIsLoading(false);
-      });
-    }
+    let intervalId: number | undefined;
+
+    const fetchData = () => {
+      if (lastHash) {
+        getTransaction(lastHash).then((response) => {
+          setHistory(response.result.input);
+          setLastTx(response.result);
+        });
+      } else {
+        setIsLoading(true);
+        getHistory().then((response) => {
+          const sorted = response.items
+            .filter((item) => item.input.slice(0, 10) == "0x7c98ed42")
+            .sort((a, b) => b.input.length - a.input.length);
+          const mostRecent = sorted[0];
+          setHistory(mostRecent.input);
+          setIsLoading(false);
+        });
+      }
+    };
+
+    fetchData();
+    intervalId = globalThis.setInterval(fetchData, 5000);
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
   }, [lastHash]);
 
   const signAndPack = async () => {
@@ -70,7 +83,8 @@ export default function WorldChatClient() {
         className="flex-1 flex  p-4 space-y-3 sm:space-y-4 overflow-y-scroll flex-col-reverse"
         id="chat-container"
       >
-        {isLoading ? <p>Loading...</p> : <ChatHistory data={history} />}
+        <ChatHistory data={history} />
+        {isLoading ?? <span>Loading...</span>}
       </main>
       <footer className="bg-gray-800 py-4 px-4 border-t border-gray-700 sm:py-5 sm:px-6">
         <div className="flex items-center">
