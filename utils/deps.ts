@@ -18,5 +18,13 @@ export const WORLD_CHAT_ADDRESS = isMainnet
 export const provider = new ethers.JsonRpcProvider(
   `https://eth-sepolia.blockscout.com/api/eth-rpc?apikey=${BLOCKSCOUT_APIKEY}`,
 );
-export const relayer = new ethers.Wallet(Deno.env.get("WC_RELAYER_KEY") ?? ethers.keccak256("vitalik"), provider);
+export const relayer = new ethers.Wallet(
+  Deno.env.get("WC_RELAYER_KEY") ??
+    ethers.keccak256(ethers.toUtf8Bytes("vitalik")),
+  provider,
+);
 
+if (!ALCHEMY_API_URL) console.log("Undefined Alchemy API URL");
+if (!BLOCKSCOUT_APIKEY) console.log("Undefined Blockscout API Key");
+if (!WORLD_CHAT_ADDRESS) console.log("Undefined World Chat Address");
+if (!Deno.env.get("WC_RELAYER_KEY")) console.log("Undefined WC Relayer Key");
