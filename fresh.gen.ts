@@ -9,7 +9,6 @@ import * as $api_send_message from "./routes/api/send-message.ts";
 import * as $api_transaction from "./routes/api/transaction.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
-import * as $worldchat from "./routes/worldchat.tsx";
 import * as $ChatHistory from "./islands/ChatHistory.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $Wallet from "./islands/Wallet.tsx";
@@ -25,7 +24,6 @@ const manifest = {
     "./routes/api/transaction.ts": $api_transaction,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
-    "./routes/worldchat.tsx": $worldchat,
   },
   islands: {
     "./islands/ChatHistory.tsx": $ChatHistory,
